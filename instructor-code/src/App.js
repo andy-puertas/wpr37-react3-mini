@@ -28,10 +28,9 @@ class App extends Component {
     this.byYear = this.byYear.bind( this );
     this.deleteBuyer = this.deleteBuyer.bind( this );
   }
-
   componentDidMount() {
     this.getVehicles();
-    this.getPotentialBuyers();
+    this.getPotentialBuyers()
   }
 
   getVehicles() {
@@ -48,12 +47,12 @@ class App extends Component {
   getPotentialBuyers() {
     // axios (GET)
     // setState with response -> buyersToDisplay
-    let promise = axios.get(this.state.baseUrl + '/buyers/')
-    promise.then((res) => {
+    let promise = axios.get(this.state.baseUrl + '/buyers')
+    promise.then( (res) => {
       this.setState({
         buyersToDisplay: res.data
       })
-    })
+    } )
   }
 
   sellCar( id ) {
@@ -85,7 +84,7 @@ class App extends Component {
     // axios (PUT)
     // setState with response -> vehiclesToDisplay
     let promise = axios.put(`${this.state.baseUrl}/vehicles/${id}/${priceChange}`)
-    promise.then((res) => {
+    promise.then( (res) => {
       this.setState({
         vehiclesToDisplay: res.data.vehicles
       })
@@ -154,6 +153,7 @@ class App extends Component {
   // Do not edit the code above
 
   render() {
+    console.log('render')
     const vehicles = this.state.vehiclesToDisplay.map( v => {
       return (
         <div key={ v.id }>
